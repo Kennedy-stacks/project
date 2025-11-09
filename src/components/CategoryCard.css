@@ -1,0 +1,31 @@
+/* CategoryCard.css */
+.category-card {
+  background: white;
+  border: 1px solid #DBDEE7;
+  border-radius: 4px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.category-card:hover {
+  border-color: #DB4444;
+  background: #fef2f2;
+}
+
+.category-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.category-name {
+  font-size: 16px;
+  color: #1A1A1A;
+  margin-bottom: 8px;
+}
+
+.category-items {
+  font-size: 14px;
+  color: #666;
+}

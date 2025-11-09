@@ -1,0 +1,59 @@
+.carousel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 400px;
+  position: relative;
+}
+
+.carousel-content {
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.product-tag {
+  background: #DB4444;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  width: fit-content;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.carousel-title {
+  font-size: 48px;
+  font-weight: 600;
+  margin: 16px 0;
+}
+
+.carousel-button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 16px 48px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.carousel-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-image img {
+  max-width: 120%;
+  height: auto;
+  object-fit: cover;
+}

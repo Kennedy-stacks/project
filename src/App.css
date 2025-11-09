@@ -1,0 +1,210 @@
+/* === MAIN LAYOUT === */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #FAFAFA;
+  font-family: 'Inter', sans-serif;
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 280px;
+  background: white;
+  border-right: 1px solid #DBDEE7;
+  padding: 32px 24px;
+  flex-shrink: 0;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-menu-item {
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+
+.sidebar-menu-item:hover {
+  color: #DB4444;
+}
+
+/* === MAIN CONTENT === */
+.main-content {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* === CAROUSEL SECTION === */
+.carousel-section {
+  width: 100%;
+}
+
+/* === SECTION STYLES === */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.red-bar {
+  width: 20px;
+  height: 40px;
+  background: #DB4444;
+  border-radius: 4px;
+}
+
+.section-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #DB4444;
+  margin: 0;
+}
+
+.section-header h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.section-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.arrow-btn {
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: #F5F5F5;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-all-btn,
+.view-all-products {
+  background: #DB4444;
+  color: white;
+  border: none;
+  padding: 12px 48px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* === GRIDS === */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* === MUSIC BANNER === */
+.music-banner {
+  background: #000;
+  color: white;
+  border-radius: 8px;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.banner-content h3 {
+  font-size: 36px;
+  margin-bottom: 24px;
+}
+
+.countdown {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.countdown > div {
+  background: white;
+  color: black;
+  padding: 8px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.countdown span {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.buy-now-btn {
+  background: #00FF66;
+  color: black;
+  border: none;
+  padding: 16px 48px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.music-banner img {
+  max-width: 400px;
+  height: auto;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #DBDEE7;
+    padding: 16px;
+  }
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .music-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
