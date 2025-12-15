@@ -1,9 +1,12 @@
 import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProductCard from "./components/ProductCard";
 import CategoryCard from "./components/CategoryCard";
 import FeaturedCarousel from "./components/FeaturedCarousel";
+import Payment from "./components/Payment";
+import Cart from "./components/Cart";
 import "./App.css";
 
 const categories = [
@@ -68,9 +71,12 @@ const featuredProduct = {
 function App() {
   return (
     <div className="app">
-      <Header />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Header />
 
-      <div className="content-wrapper">
+            <div className="content-wrapper">
         {/* LEFT SIDEBAR */}
         <aside className="sidebar">
           <nav className="sidebar-menu">
@@ -121,7 +127,7 @@ function App() {
                 <h3>This Month</h3>
               </div>
               <h2>Best Selling Products</h2>
-              <button className="view-all-btn">View All</button>
+              <Link to="/payment" className="view-all-btn">Checkout</Link>
             </div>
             <div className="products-grid">
               {bestSellingProducts.map(p => (
@@ -142,7 +148,7 @@ function App() {
               </div>
               <button className="buy-now-btn">Buy Now!</button>
             </div>
-            <img src="/images/speaker.png" alt="Speaker" />
+            <img src="/images/headph.png" alt="Speaker" />
           </section>
 
           {/* 5. EXPLORE PRODUCTS */}
@@ -162,7 +168,12 @@ function App() {
         </main>
       </div>
 
-      <Footer />
+            <Footer />
+          </>
+        } />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/payment" element={<Payment />} />
+      </Routes>
     </div>
   );
 }

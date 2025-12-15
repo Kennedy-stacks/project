@@ -1,31 +1,37 @@
 /* CategoryCard.css */
 .category-card {
   background: white;
-  border: 1px solid #DBDEE7;
-  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   padding: 24px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .category-card:hover {
   border-color: #DB4444;
-  background: #fef2f2;
+  background: linear-gradient(135deg, #fff5f5 0%, #fef2f2 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(219, 68, 68, 0.15);
 }
 
-.category-icon {
-  font-size: 32px;
+.icon-placeholder {
+  font-size: 40px;
   margin-bottom: 16px;
-}
-
-.category-name {
-  font-size: 16px;
-  color: #1A1A1A;
-  margin-bottom: 8px;
-}
-
-.category-items {
-  font-size: 14px;
   color: #666;
+  transition: color 0.3s;
+}
+
+.category-card:hover .icon-placeholder {
+  color: #DB4444;
+}
+
+.category-card p {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  margin: 0;
+}
 }

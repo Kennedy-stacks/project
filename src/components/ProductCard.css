@@ -29,25 +29,70 @@
   right: 12px;
   background: white;
   border: none;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.product-card:hover .wishlist-btn {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .heart-icon {
   color: #DB4444;
-  font-size: 18px;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.wishlist-btn:hover .heart-icon {
+  color: #ff4757;
 }
 
 .quick-actions {
   position: absolute;
-  bottom: -50px;
+  bottom: 0;
   left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.3s;
+}
+
+.product-card:hover .quick-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.action-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.3s;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
   right: 0;
   display: flex;
   gap: 8px;

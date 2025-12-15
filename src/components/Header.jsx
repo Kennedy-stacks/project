@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaSearch, FaHeart, FaShoppingCart } from 'react-icons/fa';
 import './Header.css';
 
 const Header = () => {
@@ -8,7 +10,7 @@ const Header = () => {
       <div className="announcement-bar">
         <div className="announcement-content">
           <div className="announcement-text">
-            Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! 
+            Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
             <a href="#" className="shop-now-link">Shop Now</a>
           </div>
           <div className="language-selector">
@@ -23,15 +25,17 @@ const Header = () => {
         <div className="header-container">
           {/* LOGO */}
           <div className="logo">
-            <h1>Exclusive</h1>
+            <Link to="/" className="logo-link">
+              <h1>Exclusive</h1>
+            </Link>
           </div>
 
           {/* NAVIGATION */}
           <nav className="nav-menu">
-            <a href="/" className="nav-link active">Home</a>
-            <a href="/contact" className="nav-link">Contact</a>
-            <a href="/about" className="nav-link">About</a>
-            <a href="/signup" className="nav-link">Sign Up</a>
+            <Link to="/" className="nav-link active">Home</Link>
+            <Link to="/contact" className="nav-link">Contact</Link>
+            <Link to="/about" className="nav-link">About</Link>
+            <Link to="/signup" className="nav-link">Sign Up</Link>
           </nav>
 
           {/* RIGHT ACTIONS: SEARCH + ICONS */}
@@ -42,17 +46,19 @@ const Header = () => {
                 className="search-input"
                 placeholder="What are you looking for?"
               />
-              <button className="search-btn">🔍</button>
+              <button className="search-btn">
+                <FaSearch />
+              </button>
             </div>
 
             <div className="icon-buttons">
               <button className="action-button">
-                <span>♡</span>
+                <FaHeart />
               </button>
-              <button className="action-button">
-                <span>🛒</span>
+              <Link to="/cart" className="action-button cart-link">
+                <FaShoppingCart />
                 <span className="action-badge">2</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
