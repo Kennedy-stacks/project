@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProductCard from "./components/ProductCard";
 import CategoryCard from "./components/CategoryCard";
 import FeaturedCarousel from "./components/FeaturedCarousel";
+import ProductDetail from "./components/ProductDetail";
+import SearchResults from "./components/SearchResults";
 import Payment from "./components/Payment";
 import Cart from "./components/Cart";
 import "./App.css";
@@ -27,7 +29,8 @@ const bestSellingProducts = [
     discount: "-30%",
     image: "/images/northcoat.png",
     rating: 5,
-    reviews: 65
+    reviews: 65,
+    category: "Clothing"
   },
   {
     id: 2,
@@ -37,7 +40,8 @@ const bestSellingProducts = [
     discount: "-35%",
     image: "/images/bag.png",
     rating: 4.5,
-    reviews: 65
+    reviews: 65,
+    category: "Accessories"
   },
   {
     id: 3,
@@ -47,7 +51,8 @@ const bestSellingProducts = [
     discount: "-10%",
     image: "/images/cpu.png",
     rating: 4.5,
-    reviews: 65
+    reviews: 65,
+    category: "Electronics"
   },
   {
     id: 4,
@@ -56,7 +61,8 @@ const bestSellingProducts = [
     oldPrice: null,
     image: "/images/shelf.png",
     rating: 5,
-    reviews: 65
+    reviews: 65,
+    category: "Furniture"
   }
 ];
 
@@ -69,8 +75,38 @@ const featuredProduct = {
 };
 
 function App() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [filteredProducts, setFilteredProducts] = useState(bestSellingProducts);
+
+  useEffect(() => {
+    // Category mapping for filtering
+    const categoryMapping = {
+      "Phones": "Electronics",
+      "Computers": "Electronics",
+      "Watches": "Accessories",
+      "Cameras": "Electronics",
+      "Headphones": "Electronics",
+      "Gaming": "Electronics"
+    };
+
+    if (selectedCategory) {
+      const categoryName = categoryMapping[selectedCategory] || selectedCategory;
+      const filtered = bestSellingProducts.filter(product =>
+        product.category === categoryName
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(bestSellingProducts);
+    }
+  }, [selectedCategory]);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(selectedCategory === category.name ? null : category.name);
+  };
+
   return (
     <div className="app">
+      <SearchResults />
       <Routes>
         <Route path="/" element={
           <>
@@ -108,13 +144,18 @@ function App() {
               </div>
               <h2>Browse By Category</h2>
               <div className="section-controls">
+                {selectedCategory && (
+                  <button onClick={() => setSelectedCategory(null)} className="clear-filter-btn">
+                    Clear Filter
+                  </button>
+                )}
                 <button className="arrow-btn">{"<"}</button>
                 <button className="arrow-btn">{">"}</button>
               </div>
             </div>
             <div className="categories-grid">
               {categories.map((cat, i) => (
-                <CategoryCard key={i} category={cat} />
+                <CategoryCard key={i} category={cat} onClick={handleCategoryClick} />
               ))}
             </div>
           </section>
@@ -126,11 +167,13 @@ function App() {
                 <div className="red-bar"></div>
                 <h3>This Month</h3>
               </div>
-              <h2>Best Selling Products</h2>
+              <h2>
+                {selectedCategory ? `${selectedCategory} Products` : 'Best Selling Products'}
+              </h2>
               <Link to="/payment" className="view-all-btn">Checkout</Link>
             </div>
             <div className="products-grid">
-              {bestSellingProducts.map(p => (
+              {filteredProducts.map(p => (
                 <ProductCard key={p.id} product={p} />
               ))}
             </div>
@@ -172,6 +215,7 @@ function App() {
           </>
         } />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/payment" element={<Payment />} />
       </Routes>
     </div>

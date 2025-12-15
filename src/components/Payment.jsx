@@ -6,6 +6,7 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
+import { useCart } from '../contexts/CartContext';
 import './Payment.css';
 
 // Initialize Stripe with your publishable key
@@ -15,9 +16,14 @@ const stripePromise = loadStripe('pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE');
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const { cartItems, getCartTotal, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  const subtotal = getCartTotal();
+  const shipping = subtotal > 500 ? 0 : 50;
+  const total = subtotal + shipping;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,8 +42,9 @@ const CheckoutForm = () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       setSuccess(true);
+      clearCart(); // Clear cart after successful payment
       setLoading(false);
-    } catch (err) {
+    } catch {
       setError('Payment failed. Please try again.');
       setLoading(false);
     }
@@ -61,16 +68,18 @@ const CheckoutForm = () => {
 
       <div className="order-summary">
         <h3>Order Summary</h3>
+        {cartItems.map(item => (
+          <div key={item.id} className="order-item">
+            <span>{item.name} (x{item.quantity})</span>
+            <span>${(item.price * item.quantity).toFixed(2)}</span>
+          </div>
+        ))}
         <div className="order-item">
-          <span>The north coat</span>
-          <span>$260</span>
-        </div>
-        <div className="order-item">
-          <span>Gucci duffle bag</span>
-          <span>$960</span>
+          <span>Shipping</span>
+          <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
         </div>
         <div className="order-total">
-          <span>Total: $1,220</span>
+          <span>Total: ${total.toFixed(2)}</span>
         </div>
       </div>
 
@@ -101,7 +110,7 @@ const CheckoutForm = () => {
         disabled={!stripe || loading}
         className="pay-btn"
       >
-        {loading ? 'Processing...' : 'Pay $1,220'}
+        {loading ? 'Processing...' : `Pay $${total.toFixed(2)}`}
       </button>
     </form>
   );

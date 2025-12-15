@@ -6,17 +6,18 @@ This is a modern React shopping site built with Vite that includes Stripe paymen
 
 - **Modern Design**: Clean, professional interface with gradient backgrounds and smooth animations
 - **Icon Integration**: Professional icons from React Icons library replacing emojis
+- **Shopping Cart**: Full cart functionality with add/remove items, quantity management, and persistence
 - **Product Catalog**: Featured products carousel, category browsing, and best-selling items
-- **Shopping Cart**: Full cart functionality with quantity management and checkout
 - **Stripe Payment**: Secure payment processing with Stripe Elements
 - **Responsive Design**: Mobile-friendly layout that works on all devices
 - **Navigation**: React Router for seamless page transitions
+- **State Management**: React Context for cart state with localStorage persistence
 
 ## Pages
 
 - **Home (/)**: Main shopping page with products, categories, and featured items
-- **Cart (/cart)**: Shopping cart with item management and checkout
-- **Payment (/payment)**: Stripe-powered checkout page
+- **Cart (/cart)**: Shopping cart with item management, quantity controls, and checkout
+- **Payment (/payment)**: Stripe-powered checkout page with dynamic order summary
 
 ## Tech Stack
 

@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import "./CategoryCard.css";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ category, onClick }) => {
   const getIcon = (iconName) => {
     const icons = {
       phone: <FaMobileAlt />,
@@ -24,7 +24,7 @@ const CategoryCard = ({ category }) => {
   };
 
   return (
-    <div className="category-card">
+    <div className="category-card" onClick={() => onClick && onClick(category)}>
       <div className="icon-placeholder">{getIcon(category.icon)}</div>
       <p>{category.name}</p>
     </div>

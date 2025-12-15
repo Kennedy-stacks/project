@@ -23,6 +23,11 @@
   object-fit: cover;
 }
 
+.product-image a {
+  display: block;
+  text-decoration: none;
+}
+
 .wishlist-btn {
   position: absolute;
   top: 12px;
@@ -124,6 +129,12 @@
   font-size: 16px;
   margin-bottom: 8px;
   color: #1A1A1A;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.product-name:hover {
+  color: #007bff;
 }
 
 .price-container {

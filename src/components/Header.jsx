@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaHeart, FaShoppingCart } from 'react-icons/fa';
+import { useCart } from '../contexts/CartContext';
+import { useSearch } from '../contexts/SearchContext';
 import './Header.css';
 
 const Header = () => {
+  const { cartCount } = useCart();
+  const { performSearch } = useSearch();
+  const [searchInput, setSearchInput] = useState('');
   return (
     <>
       {/* === ANNOUNCEMENT BAR === */}
@@ -45,8 +50,18 @@ const Header = () => {
                 type="search"
                 className="search-input"
                 placeholder="What are you looking for?"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    performSearch(searchInput);
+                  }
+                }}
               />
-              <button className="search-btn">
+              <button
+                className="search-btn"
+                onClick={() => performSearch(searchInput)}
+              >
                 <FaSearch />
               </button>
             </div>
@@ -57,7 +72,7 @@ const Header = () => {
               </button>
               <Link to="/cart" className="action-button cart-link">
                 <FaShoppingCart />
-                <span className="action-badge">2</span>
+                {cartCount > 0 && <span className="action-badge">{cartCount}</span>}
               </Link>
             </div>
           </div>

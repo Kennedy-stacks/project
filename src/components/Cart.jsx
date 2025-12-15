@@ -1,41 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
+import { useCart } from '../contexts/CartContext';
 import './Cart.css';
 
 const Cart = () => {
-  // Sample cart items - in a real app, this would come from state management
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "The north coat",
-      price: 260,
-      image: "/images/northcoat.png",
-      quantity: 1
-    },
-    {
-      id: 2,
-      name: "Gucci duffle bag",
-      price: 960,
-      image: "/images/bag.png",
-      quantity: 2
-    }
-  ]);
+  const { cartItems, updateQuantity, removeFromCart, getCartTotal } = useCart();
 
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCartItems(items =>
-      items.map(item =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-  };
-
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const subtotal = getCartTotal();
   const shipping = subtotal > 500 ? 0 : 50;
   const total = subtotal + shipping;
 
@@ -83,7 +55,7 @@ const Cart = () => {
                       <p>${item.price * item.quantity}</p>
                     </div>
                     <button
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                       className="remove-btn"
                     >
                       <FaTrash />
